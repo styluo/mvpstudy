@@ -1,5 +1,7 @@
 package edu.shu.styluo.search.queryprescription;
 
+import java.util.List;
+
 import edu.shu.styluo.search.BasePresenter;
 import edu.shu.styluo.search.BaseView;
 
@@ -9,12 +11,10 @@ import edu.shu.styluo.search.BaseView;
 
 public interface QueryPrescriptionContract {
     interface view extends BaseView<presenter>{
-        void showData(String[] strArray);
+        void showData(List<String> symptomList);
     }
 
     interface presenter extends BasePresenter{
         void getData();
-
-        String getText(int position);
     }
 }

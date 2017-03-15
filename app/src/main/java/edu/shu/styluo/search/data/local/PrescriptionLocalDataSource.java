@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.shu.styluo.search.data.PrescriptionDetail;
-import edu.shu.styluo.search.utils.LogUtil;
 
 /**
  * Created by a1056 on 2017/3/15.
@@ -63,5 +62,32 @@ public class PrescriptionLocalDataSource {
             }
         }
         return prescriptionDetailList;
+    }
+
+    public List<String> getSymptomList(){
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        List<String> symptomList = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = db.query(PrescriptionContract.SymptomEntry.TABLE_NAME,
+                    new String[]{PrescriptionContract.SymptomEntry.COLUMN_DISEASE_NAME},
+                    null, null, null, null, null);
+
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    String symptomName = cursor.getString(cursor.getColumnIndex(PrescriptionContract.SymptomEntry.COLUMN_DISEASE_NAME));
+
+                    symptomList.add(symptomName);
+                }while(cursor.moveToNext());
+
+            }
+        }finally {
+            if(cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+        }
+
+        return symptomList;
     }
 }

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +17,7 @@ import butterknife.OnItemClick;
 import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 import edu.shu.styluo.search.R;
+import edu.shu.styluo.search.adapter.QueryPrescriptionAdater;
 import edu.shu.styluo.search.prescriptiondetail.PrescriptionDetailActivity;
 
 /**
@@ -30,6 +33,8 @@ public class QueryPrescriptionActivity extends AppCompatActivity implements Quer
 
     @BindView(R.id.search_prescription_view)
     EditText mSearchView;
+
+    BaseAdapter symptomAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +59,9 @@ public class QueryPrescriptionActivity extends AppCompatActivity implements Quer
     }
 
     @Override
-    public void showData(String[] strArray) {
-        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strArray));
+    public void showData(List<String> symptomList) {
+        symptomAdapter = new QueryPrescriptionAdater(symptomList);
+        mListView.setAdapter(symptomAdapter);
         mListView.setTextFilterEnabled(true);
     }
 
@@ -70,7 +76,7 @@ public class QueryPrescriptionActivity extends AppCompatActivity implements Quer
 
     @OnItemClick(R.id.prescription_list_view)
     void onItemClick(int position) {
-        String diseaseName = mPresenter.getText(position);
+        String diseaseName = (String) symptomAdapter.getItem(position);
 
         if(diseaseName != null){
             Intent intent = new Intent(this, PrescriptionDetailActivity.class);
