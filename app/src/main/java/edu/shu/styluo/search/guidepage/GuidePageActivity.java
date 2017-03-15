@@ -56,6 +56,7 @@ public class GuidePageActivity extends Activity
                 Intent intent = new Intent();
                 intent.setClass(GuidePageActivity.this, QueryPrescriptionActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
