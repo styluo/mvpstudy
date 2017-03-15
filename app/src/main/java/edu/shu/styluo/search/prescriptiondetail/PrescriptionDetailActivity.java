@@ -1,8 +1,8 @@
 package edu.shu.styluo.search.prescriptiondetail;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,7 +25,7 @@ import edu.shu.styluo.search.utils.ToastUtil;
  * Created by a1056 on 2017/3/14.
  */
 
-public class PrescriptionDetailActivity extends AppCompatActivity implements PrescriptionDetailContract.view{
+public class PrescriptionDetailActivity extends Activity implements PrescriptionDetailContract.view{
     PrescriptionDetailContract.presenter mPresenter;
 
     String diseaseName;

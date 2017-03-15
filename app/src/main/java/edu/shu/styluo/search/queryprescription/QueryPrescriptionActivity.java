@@ -1,9 +1,9 @@
 package edu.shu.styluo.search.queryprescription;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -24,7 +24,7 @@ import edu.shu.styluo.search.prescriptiondetail.PrescriptionDetailActivity;
  * Created by a1056 on 2017/3/14.
  */
 
-public class QueryPrescriptionActivity extends AppCompatActivity implements QueryPrescriptionContract.view{
+public class QueryPrescriptionActivity extends Activity implements QueryPrescriptionContract.view{
 
     private QueryPrescriptionContract.presenter mPresenter;
 

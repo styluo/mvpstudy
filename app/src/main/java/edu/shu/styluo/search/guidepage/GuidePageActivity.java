@@ -1,8 +1,8 @@
 package edu.shu.styluo.search.guidepage;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
+
+import java.lang.ref.SoftReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,10 +26,11 @@ import edu.shu.styluo.search.queryprescription.QueryPrescriptionActivity;
  * e-mail: shu_jiahuili@foxmail.com
  */
 
-public class GuidePageActivity extends AppCompatActivity
+public class GuidePageActivity extends Activity
         implements GestureDetector.OnGestureListener {
     @BindView(R.id.guide_page)
-    private ViewFlipper viewFlipper;
+    ViewFlipper viewFlipper;
+
     private GestureDetector detector; //手势检测
     private Button button_enter;
 
@@ -58,8 +61,16 @@ public class GuidePageActivity extends AppCompatActivity
 
 
         //往viewFlipper添加View
-        viewFlipper.addView(getImageView(R.drawable.page1));
-        viewFlipper.addView(getImageView(R.drawable.page2));
+        ImageView page1 = getImageView(R.drawable.page1);
+        page1.setScaleType(ImageView.ScaleType.FIT_XY);
+        SoftReference<ImageView> page1SoftReference = new SoftReference<ImageView>(page1);
+
+        ImageView page2 = getImageView(R.drawable.page2);
+        page2.setScaleType(ImageView.ScaleType.FIT_XY);
+        SoftReference<ImageView> page2SoftReference = new SoftReference<ImageView>(page2);
+
+        if(page1SoftReference != null) viewFlipper.addView(page1);
+        if(page2SoftReference != null) viewFlipper.addView(page2);
         viewFlipper.addView(view);
 
         //动画效果

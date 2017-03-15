@@ -20,7 +20,7 @@
             android:id="@+id/guide_to_query"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="进入"
+            android:text="@string/guide_to_query"
             android:textAppearance="?android:textAppearanceMedium"
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="90dp"
