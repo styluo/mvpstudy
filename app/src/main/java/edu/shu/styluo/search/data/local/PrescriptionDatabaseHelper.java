@@ -106,6 +106,10 @@ public class PrescriptionDatabaseHelper extends SQLiteOpenHelper {
 
         prescriptionList.add(prescription);
         symptomList.add(symptom);
+        symptomList.add(new Symptom("testFilter", "test"));
+        symptomList.add(new Symptom("testFilter123", "test"));
+        symptomList.add(new Symptom("testFilter234", "test"));
+        symptomList.add(new Symptom("testFilter345", "test"));
 
         initPrescription(db, prescriptionList);
         initSymptom(db, symptomList);
