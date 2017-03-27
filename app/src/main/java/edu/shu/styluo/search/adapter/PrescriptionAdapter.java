@@ -19,7 +19,11 @@ public class PrescriptionAdapter extends BaseQuickAdapter<PrescriptionDetail> {
 
     @Override
     protected void convert(BaseViewHolder helper, PrescriptionDetail item) {
-        helper.setText(R.id.prescription_name, item.getPrescription_name())
-                .setText(R.id.prescription_intro, item.getPrescription_intro());
+        helper.setText(R.id.prescription_name, item.getPrescription_name());
+
+        /**
+         *项目需求更改不直接处理处理处方介绍，改显示在另一个界面中
+         */
+               // .setText(R.id.prescription_intro, item.getPrescription_intro());
     }
 }

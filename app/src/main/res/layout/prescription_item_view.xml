@@ -9,10 +9,4 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/prescription_intro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textAlignment="center"/>
 </LinearLayout>

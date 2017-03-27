@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import edu.shu.styluo.search.R;
 import edu.shu.styluo.search.adapter.PrescriptionAdapter;
 import edu.shu.styluo.search.data.PrescriptionDetail;
-import edu.shu.styluo.search.utils.ToastUtil;
+import edu.shu.styluo.search.prescriptionintro.PrescriptionIntroActivity;
 
 /**
  * Created by a1056 on 2017/3/14.
@@ -65,7 +65,7 @@ public class PrescriptionDetailActivity extends Activity implements Prescription
 
 
     @Override
-    public void initAdapter(List<PrescriptionDetail> prescriptionDetailList) {
+    public void initAdapter(final List<PrescriptionDetail> prescriptionDetailList) {
         BaseQuickAdapter prescriptionAdapter = new PrescriptionAdapter(R.layout.prescription_item_view, prescriptionDetailList);
         prescriptionAdapter.openLoadAnimation();
         View top = getLayoutInflater().inflate(R.layout.prescription_top_view, (ViewGroup) prescriptionReView.getParent(), false);
@@ -75,7 +75,12 @@ public class PrescriptionDetailActivity extends Activity implements Prescription
         prescriptionReView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                ToastUtil.showToast(getApplicationContext(), "click event");
+                String prescriptionName = prescriptionDetailList.get(i).getPrescription_name();
+
+                Intent intent = new Intent(PrescriptionDetailActivity.this, PrescriptionIntroActivity.class);
+                intent.putExtra("prescriptionName", prescriptionName);
+                startActivity(intent);
+
             }
         });
 

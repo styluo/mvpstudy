@@ -90,4 +90,34 @@ public class PrescriptionLocalDataSource {
 
         return symptomList;
     }
+
+    public String getPrescriptionIntro(String prescriptionName){
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String prescriptionIntro = null;
+        Cursor cursor = null;
+
+        try{
+            String selection = PrescriptionContract.PrescriptionEntry.COLUMN_PRESCRIPTION_NAME + " = ?";
+
+            cursor = db.query(PrescriptionContract.PrescriptionEntry.TABLE_NAME,
+                    new String[]{PrescriptionContract.PrescriptionEntry.COLUMN_PRESCRIPTION_INTRO},
+                    selection, new String[]{prescriptionName}, null, null, null);
+
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    /*查首个则直接break，最后一个则不break掉*/
+                    prescriptionIntro = cursor.getString(cursor.getColumnIndex(PrescriptionContract.PrescriptionEntry.COLUMN_PRESCRIPTION_INTRO));
+                    break;
+                }while(cursor.moveToNext());
+
+            }
+        }finally {
+            if(cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+        }
+
+        return prescriptionIntro;
+    }
 }

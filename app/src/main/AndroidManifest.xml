@@ -18,6 +18,7 @@
 
         <activity android:name="edu.shu.styluo.search.prescriptiondetail.PrescriptionDetailActivity" />
         <activity android:name="edu.shu.styluo.search.queryprescription.QueryPrescriptionActivity" />
+        <activity android:name=".prescriptionintro.PrescriptionIntroActivity"/>
     </application>
 
 </manifest>
